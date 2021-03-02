@@ -2,6 +2,7 @@ class Invoice:
 
     def __init__(self):
         self.items = {}
+        self.tax = .075
 
     def addProduct(self, qnt, price, discount):
         self.items['qnt'] = qnt
@@ -27,6 +28,15 @@ class Invoice:
     def totalPurePrice(self, products):
         total_pure_price = self.totalImpurePrice(products) - self.totalDiscount(products)
         return total_pure_price
+
+    def totalTaxAmount(self, products):
+        total_tax_amount = self.totalPurePrice(products) * self.tax
+        total_tax_amount = round(total_tax_amount, 2)
+        return total_tax_amount
+
+    def totalPriceAfterTax(self, products):
+        total_price_after_tax = self.totalPurePrice(products) + self.totalTaxAmount(products)
+        return total_price_after_tax
 
     def inputAnswer(self, input_value):
         while True:

@@ -30,8 +30,19 @@ def test_CanCalculateTotalPurePrice(invoice, products):
     assert invoice.totalPurePrice(products) == 69.38
 
 
+def test_CanCalculateTaxAmount(invoice, products):
+    invoice.totalTaxAmount(products)
+    assert invoice.totalTaxAmount(products) == 5.2
+
+
+def test_CanCalculatePriceAfterTax(invoice, products):
+    invoice.totalPriceAfterTax(products)
+    assert invoice.totalPriceAfterTax(products) == 74.58
+
+
 def test_CanAddProduct(invoice, products):
     result = invoice.addProduct(4, 4.0, 4)
     product = 'Highlighter'
     products[product] = result
     assert invoice.totalImpurePrice(products) == 91
+
